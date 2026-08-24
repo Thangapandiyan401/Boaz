@@ -1,0 +1,206 @@
+/* ==========================================================================
+   Responsive — breakpoint overrides.
+   Most layouts flow on their own via auto-fit grids and clamp(); this file
+   only handles the changes those cannot express.
+   ========================================================================== */
+
+/* --- Small phones (<= 400px) --------------------------------------------- */
+
+@media (max-width: 400px) {
+    .hero .btn-row .btn,
+    .cta-panel .btn-row .btn {
+        width: 100%;
+    }
+
+    .hero-stats {
+        gap: 16px 20px;
+    }
+}
+
+/* --- Single-column hero (< 940px) ------------------------------------- */
+
+/* Above this width the hero is two columns and the visual can be layered.
+   Below it there is only one column, so the layered composition is replaced
+   by a plain stack: nothing overlaps, nothing overflows, nothing floats in
+   empty space. */
+@media (max-width: 939px) {
+    /* Tucked into the corner the brand shape barely reads, so it moves down
+       to sit behind the stacked hero cards instead. */
+    .hero__blob {
+        top: 46%;
+        right: -25%;
+        width: 150vw;
+    }
+
+    .hero__glow {
+        display: none;
+    }
+
+    .hero-visual {
+        min-height: 0;
+        margin-top: 0.5rem;
+    }
+
+    .hero-rating {
+        position: static;
+        transform: none;
+        width: 100%;
+        max-width: 460px;
+        margin-inline: auto;
+    }
+
+    .hero-chips {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+        gap: 10px;
+        max-width: 460px;
+        margin: 14px auto 0;
+    }
+
+    .hero-chip {
+        position: static;
+        animation: none;
+    }
+
+    .hero-ticket {
+        position: static;
+        max-width: 460px;
+        margin: 12px auto 0;
+        justify-content: center;
+        animation: none;
+    }
+
+    /* Cards that overlap an image corner would sit outside the container. */
+    .floating-card {
+        position: static;
+        margin-top: 14px;
+        box-shadow: var(--shadow-sm);
+    }
+}
+
+/* --- Phones (< 720px) -------------------------------------------------- */
+
+@media (max-width: 719px) {
+    .hero__blob {
+        top: 52%;
+        right: -30%;
+        width: 165vw;
+    }
+
+    .hero-chip {
+        padding: 8px 12px 8px 8px;
+        font-size: var(--fs-xs);
+    }
+
+    .accordion__trigger {
+        padding-block: 18px;
+        font-size: 1rem;
+    }
+
+    .accordion__panel p {
+        padding-right: 8px;
+    }
+}
+
+/* --- Tablet (>= 720px) ---------------------------------------------------- */
+
+@media (min-width: 720px) {
+    .footer-top {
+        grid-template-columns: minmax(240px, 1fr) 2fr;
+    }
+
+    .contact-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+/* --- Hero split (>= 940px) ------------------------------------------------ */
+
+@media (min-width: 940px) {
+    .hero__inner {
+        grid-template-columns: 1.05fr 0.95fr;
+    }
+
+    .article-layout {
+        grid-template-columns: minmax(0, 1fr) 300px;
+    }
+
+    .article-aside {
+        position: sticky;
+        top: calc(var(--header-h) + 24px);
+    }
+}
+
+/* --- Desktop navigation (>= 992px) ---------------------------------------- */
+
+@media (min-width: 992px) {
+    .primary-nav,
+    .header-actions {
+        display: flex;
+    }
+
+    .nav-toggle {
+        display: none;
+    }
+
+    .footer-top {
+        grid-template-columns: minmax(260px, 1fr) 2.2fr;
+    }
+}
+
+/* --- Wide desktop (>= 1200px) --------------------------------------------- */
+
+@media (min-width: 1200px) {
+    .hero {
+        padding-bottom: 5.5rem;
+    }
+
+    .hero-visual {
+        min-height: 520px;
+    }
+}
+
+/* --- Very wide screens ---------------------------------------------------- */
+
+@media (min-width: 1600px) {
+    .hero__blob {
+        top: -30%;
+        right: -10%;
+        width: 940px;
+    }
+}
+
+/* --- Touch devices -------------------------------------------------------- */
+
+/* Hover lifts feel like lag on touch, so only apply them to real pointers. */
+@media (hover: none) {
+    .card--hover:hover,
+    .industry-card:hover,
+    .industry-tile:hover,
+    .post-card:hover,
+    .testimonial:hover {
+        transform: none;
+        box-shadow: none;
+    }
+
+    .post-card:hover .post-card__media img {
+        transform: none;
+    }
+}
+
+/* --- Print ---------------------------------------------------------------- */
+
+@media print {
+    .site-header,
+    .site-footer,
+    .mobile-nav,
+    .nav-scrim,
+    .cta-panel,
+    .hero__blob {
+        display: none !important;
+    }
+
+    body {
+        color: #000;
+    }
+}

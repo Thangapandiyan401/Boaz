@@ -1,0 +1,8 @@
+# robots.txt for https://www.workbridge.com.au
+User-agent: *
+Allow: /
+
+# Build tooling and source partials are not content
+Disallow: /tools/
+
+Sitemap: https://www.workbridge.com.au/sitemap.xml
